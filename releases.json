@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "1.0.2",
+      "channel": "stable",
+      "released_at": "2026-04-24T07:46:40.192872+00:00",
+      "image_tag": "ghcr.io/comoforrarteonline/mantis-replay-backend:1.0.2",
+      "sha256": "a3c554c49a70f68d57e1116f3b609e3767d08156156313607cada3e1740d209f",
+      "changelog_md": "Release 1.0.2",
+      "mandatory": false,
+      "min_compatible": null,
+      "signature": "812d0180a206ac0162b9e7375341c9fc18ef1754266f99be59e843cdc2b5178e"
+    },
+    {
       "version": "1.0.1",
       "channel": "stable",
       "released_at": "2026-04-24T06:59:56.251916+00:00",
