@@ -1,0 +1,42 @@
+name: Validate releases.json schema
+
+on:
+  pull_request:
+    branches: [gh-pages]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: data
+
+      - uses: actions/checkout@v4
+        with:
+          path: schema
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install jsonschema
+        run: pip install jsonschema
+
+      - name: Validate releases.json
+        run: |
+          python - <<'PY'
+          import json, sys
+          from jsonschema import Draft202012Validator
+          schema = json.loads(open('schema/schema/releases.schema.json').read())
+          data = json.loads(open('data/releases.json').read())
+          errors = list(Draft202012Validator(schema).iter_errors(data))
+          if errors:
+              for e in errors:
+                  print(f'ERROR {list(e.absolute_path)}: {e.message}')
+              sys.exit(1)
+          print(f'OK: {len(data["releases"])} releases válidos')
+          PY

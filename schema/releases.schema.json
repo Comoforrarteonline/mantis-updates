@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/colmena/mantis-updates/schema/releases.schema.json",
+  "title": "MantIS Replay releases manifest",
+  "type": "object",
+  "required": ["releases"],
+  "properties": {
+    "releases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "channel", "released_at", "image_tag", "changelog_md", "mandatory", "signature"],
+        "properties": {
+          "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-z0-9.]+)?$" },
+          "channel": { "enum": ["stable", "beta", "dev"] },
+          "released_at": { "type": "string", "format": "date-time" },
+          "image_tag": { "type": "string" },
+          "sha256": { "type": ["string", "null"] },
+          "changelog_md": { "type": "string" },
+          "mandatory": { "type": "boolean" },
+          "min_compatible": { "type": ["string", "null"] },
+          "signature": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
