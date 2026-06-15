@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "1.0.5",
+      "channel": "stable",
+      "released_at": "2026-06-15T16:04:56.209703+00:00",
+      "image_tag": "ghcr.io/comoforrarteonline/mantis-replay-backend:1.0.5",
+      "sha256": "f489b986643fe72a2d943883c060131d2d1bdfecde80c0bdc37dc08f2622b386",
+      "changelog_md": "### Arreglado\n- **OEE**: los gauges mostraban porcentajes imposibles (9120%); la API devuelve\n  escala 0-100 y el frontend multiplicaba ×100 (OEEGauge, AndonMultiLine, OEEComparison, OEEDashboard).\n- **Replay**: al pasar a modo replay el WebSocket reconectaba por un closure obsoleto\n  y machacaba el snapshot histórico con el valor en vivo.\n- **3 errores 500**: reportes programados (columna SQL inexistente `tv.timestamp`),\n  trazabilidad de batch (import y extracción de valor por columnas tipadas), y\n  RBAC `/members` (`User.full_name` → `display_name`).\n- **Parser Siemens**: soporte del formato simplificado (items sin `CompositionName`,\n  `MultiLanguageText`, `TagConnection`, `EventHandler`); bindings bajo `Value`/`Indicator`\n  para que las pantallas demo rendericen.\n- **Simulador demo**: difunde valores por WebSocket, resuelve el proyecto por nombre\n  (robusto ante re-seed) y registra `AlarmEvent` con `trigger_value`.\n- **Arranque**: `logger` indefinido en import de proyectos (NameError al fallar la\n  generación de dashboard); `/backups` ya no se crea al importar (rompía CI/tests).\n- **CI verde** tras meses en rojo: lint (155 autofix + reglas F bloqueantes), `package-lock`\n  desincronizado, suite backend 277/277, frontend 113/113, kwargs de pool solo en Postgres,\n  imagen GHCR en minúsculas.\n\n### Añadido\n- Internacionalización: barrido completo de la UI a español (72 vistas).\n- Manual de Ayuda con 42 capturas regeneradas (español, OEE correcto, sin banner).\n- Dossier técnico comercial (Word) y FAQ verificado contra el código real.\n- Recorrido QA automatizado (Playwright, 48 rutas).",
+      "mandatory": false,
+      "min_compatible": null,
+      "signature": "73e3b3b640d902b1cd2219f1f2b540aa3480c3f3926b0ffe175a10c71bf8e513"
+    },
+    {
       "version": "1.0.4",
       "channel": "stable",
       "released_at": "2026-05-13T10:44:04.626140+00:00",
